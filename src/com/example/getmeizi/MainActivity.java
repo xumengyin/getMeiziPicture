@@ -8,6 +8,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,13 +18,18 @@ public class MainActivity extends Activity {
 
 	String Tag="main";
 	private RequestQueue queue;
-	static final String URL="http://gank.io";
+	static final String URL="http://gank.io/2015/07/17";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		queue=Volley.newRequestQueue(this);
-		setRequest();
+		//queue=Volley.newRequestQueue(this);
+		//setRequest();
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		startService(new Intent(this, getDataService.class));
 	}
 	private void setRequest()
 	{
@@ -32,8 +38,10 @@ public class MainActivity extends Activity {
 			@Override
 			public void onResponse(String response) {
 				Log.e(Tag, response);
-				ParserHtml.parser(response);
+				Pic pic=ParserHtml.parser(response);
+				
 				//成功的回调
+				//sendBroadcast(new Intent());				
 			}
 		}, new ErrorListener() {
 
