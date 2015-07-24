@@ -1,12 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res/com.example.getmeizi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
+    
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_fresh">
+    <com.huewu.pla.lib.MultiColumnListView
+        android:layout_width="match_parent"
+        android:id="@+id/list"
+        android:layout_height="match_parent"
+        app:plaColumnNumber="3"
+        app:plaLandscapeColumnNumber="3" >
+    </com.huewu.pla.lib.MultiColumnListView>
+ </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>
